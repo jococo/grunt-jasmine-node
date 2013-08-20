@@ -21,6 +21,7 @@ module.exports = function (grunt) {
       var specNameMatcher = grunt.config("jasmine_node.specNameMatcher") || "spec";
       var teamcity        = grunt.config("jasmine_node.teamcity") || false;
       var useRequireJs    = grunt.config("jasmine_node.requirejs") || false;
+      var requireJsSetup  = grunt.config("jasmine_node.requireJsSetup") || false;
       var extensions      = grunt.config("jasmine_node.extensions") || "js";
       var match           = grunt.config("jasmine_node.match") || ".";
       var matchall        = grunt.config("jasmine_node.matchall") || false;
@@ -89,6 +90,9 @@ module.exports = function (grunt) {
         junitreport:     jUnit
       };
 
+      if( requireJsSetup ) {
+        options['requireJsSetup'] = requireJsSetup;
+      }
 
       // order is preserved in node.js
       var legacyArguments = Object.keys(options).map(function(key) {
